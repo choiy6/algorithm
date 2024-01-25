@@ -1,6 +1,6 @@
     package HighScoreKit;
 
-    import java.util.HashMap;
+    import java.util.*;
 
     //문제 설명
     //수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
@@ -27,9 +27,9 @@
     //예제 #3
     //"mislav"는 참여자 명단에는 두 명이 있지만, 완주자 명단에는 한 명밖에 없기 때문에 한명은 완주하지 못했습니다.
 
-    public class 해시_완주하지못한선수 {
+    public class 해시_완주하지못한선수_복습 {
         public static void main(String[] args) {
-            해시_완주하지못한선수 sl = new 해시_완주하지못한선수();
+            해시_완주하지못한선수_복습 sl = new 해시_완주하지못한선수_복습();
             // 예제 데이터
             String[] participant1 = {"leo", "kiki", "eden"};
             String[] completion1 = {"eden", "kiki"};
@@ -40,24 +40,20 @@
         }
 
         public String solution(String[] participant, String[] completion) {
-            String answer = "";
+            String answer ="";
             HashMap<String, Integer> hm = new HashMap<>();
-            // participant 배열을 순회하면서 맵에 이름과 등장 횟수 기록
-            for(String name : participant){
-                hm.put(name, hm.getOrDefault(name, 0)+1 );
-//      getOrDefault(Objectkey, defaultValue) : key와 맵핑된 value값을 반환 없으면 defaultValue값을 반환합니다.
-            }
-            // completion 배열을 순회하면서 맵에서 해당 이름의 등장 횟수 감소
-            for(String name : completion){
-                hm.put(name, hm.getOrDefault(name, 0)-1);
-            }
-            // 맵을 순회하면서 등장 횟수가 0이 아닌 이름을 찾아 반환
-            for(String key : hm.keySet()){
-                if(hm.get(key) != 0){
-                    answer = key;
-                }
-            }
 
+           for(String name : participant){
+               hm.put(name, hm.getOrDefault(name, 0)+1);
+           }
+           for(String name : completion){
+               hm.put(name, hm.getOrDefault(name, 0)-1);
+           }
+           for(String name : hm.keySet()){
+               if(hm.get(name) == 1){
+                   answer = name;
+               }
+           }
             return answer;
         }
     }
