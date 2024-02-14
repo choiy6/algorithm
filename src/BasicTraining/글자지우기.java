@@ -29,13 +29,21 @@ public class 글자지우기 {
     }
     public String solution(String my_string, int[] indices) {
         String answer = "";
-        Arrays.sort(indices);
-        // 다시 생각해봐야 될듯 my_string의 length 로 할지 indices.length를 할지 등등
-        for(int i = 0 ; i < indices[(indices.length-1)] ; i++){
-            if(i != indices[i]){
+        for (int i = 0; i < my_string.length(); i++) {
+            boolean remove = false;
+            // 현재 인덱스가 제거해야 하는 인덱스인지 확인
+            for (int index : indices) {
+                if (i == index) {
+                    remove = true;
+                    break;
+                }
+            }
+            // 제거하지 않아야 하는 경우에만 문자열에 추가
+            if (!remove) {
                 answer += my_string.charAt(i);
             }
         }
+
         return answer;
     }
 }
